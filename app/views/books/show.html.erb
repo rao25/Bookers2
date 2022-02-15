@@ -1,0 +1,37 @@
+<main>
+<%= render 'list', book: @book %>
+
+<div class="col-md-8 offset-md-1">
+  <h2>Book detail</h2>
+  	<table class="table">
+  		<tbody>
+  		  <tr>
+           <td>
+            <%= link_to user_path(@book.user_id) do %>
+            <%= image_tag @book.user.get_profile_image(40,40) %> <br>
+            <%= @book.user.name %>    
+            <% end %>
+           </td>
+           <td><%= link_to @book.title, book_path(@book) %></td>
+           <td><%= @book.body %></td>
+           <td>
+            <% if @book.user == current_user %>
+              <%= link_to edit_book_path(@book.id), class: "btn btn-sm btn-success", :method => :get do %>
+              edit
+              <% end %>
+            <% end %>  
+           </td>
+           <td>
+             <% if @book.user == current_user %>
+              <%= link_to book_path(@book), class: "btn btn-sm btn-danger", :method => :delete do %>
+              destroy
+              <% end %>
+             <% end %>
+           </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  </div>
+  </main>

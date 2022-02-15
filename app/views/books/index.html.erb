@@ -1,0 +1,40 @@
+ <% if flash[:error].present? %>
+  <%= flash[:error].count %>error prohibited this obj from being saved:
+  <ul>
+    <% flash[:error].each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<main>
+<%= render 'list', book: @book %>
+
+<div class="col-md-8 offset-md-1">
+ <h2>Books</h2>
+ <table class="table table-hover table-inverse">
+  <thead>
+   <tr>
+    <th></th>
+    <th>Title</th>
+    <th>Opinion</th>
+    <th colspan="3"></th>
+   </tr>
+  </thead>
+   <% @books.each do |book| %>
+   <tbody>
+    <tr>
+     <td>
+      <%= link_to user_path(book.user.id) do %>
+      <%= image_tag book.user.get_profile_image(40,40) %>
+      <% end %>
+     </td>
+     <td><%= link_to book.title, book_path(book.id) %> </td>
+     <td><%= book.body %></td>
+    </tbody>
+    <% end %>
+ </table>
+</div>
+</div>
+</div>
+</main>
