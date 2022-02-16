@@ -1,5 +1,5 @@
 <main>
-<%= render 'list', book: @book %>
+<%= render 'list' %>
 
 <div class="col-md-8 offset-md-1">
   <h2>Book detail</h2>
@@ -7,7 +7,7 @@
   		<tbody>
   		  <tr>
            <td>
-            <%= link_to user_path(@book.user_id) do %>
+            <%= link_to user_path(@book.user.id) do %>
             <%= image_tag @book.user.get_profile_image(40,40) %> <br>
             <%= @book.user.name %>    
             <% end %>
@@ -17,14 +17,14 @@
            <td>
             <% if @book.user == current_user %>
               <%= link_to edit_book_path(@book.id), class: "btn btn-sm btn-success", :method => :get do %>
-              edit
+              Edit
               <% end %>
             <% end %>  
            </td>
            <td>
              <% if @book.user == current_user %>
               <%= link_to book_path(@book), class: "btn btn-sm btn-danger", :method => :delete do %>
-              destroy
+              Destroy
               <% end %>
              <% end %>
            </td>
